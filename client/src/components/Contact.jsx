@@ -1,26 +1,43 @@
 const Contact = () => {
   return (
-    <section id="contact" className="py-16 bg-gray-50">
-      <div className="container mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-8">Get In Touch</h2>
-        <div className="max-w-md mx-auto">
-          <div className="space-y-4">
-            <input 
-              type="text" 
-              placeholder="Your Name" 
-              className="w-full p-3 border rounded-lg"
+    <section id="contact" className="py-20">
+      <div className="max-w-7xl mx-auto px-6">
+        <h2 className="text-4xl font-bold text-center mb-10">
+          Get In <span className="text-red-500">Touch</span>
+        </h2>
+
+        <div className="max-w-md mx-auto bg-white/5 backdrop-blur-md 
+                        border border-white/10 p-8 rounded-xl">
+          <div className="space-y-5">
+            <input
+              type="text"
+              placeholder="Your Name"
+              className="w-full p-3 rounded-lg bg-black/40 
+                         border border-white/10 text-white 
+                         focus:outline-none focus:border-red-500"
             />
-            <input 
-              type="email" 
-              placeholder="Your Email" 
-              className="w-full p-3 border rounded-lg"
+
+            <input
+              type="email"
+              placeholder="Your Email"
+              className="w-full p-3 rounded-lg bg-black/40 
+                         border border-white/10 text-white 
+                         focus:outline-none focus:border-red-500"
             />
-            <textarea 
-              placeholder="Your Message" 
+
+            <textarea
+              placeholder="Your Message"
               rows="4"
-              className="w-full p-3 border rounded-lg"
+              className="w-full p-3 rounded-lg bg-black/40 
+                         border border-white/10 text-white 
+                         focus:outline-none focus:border-red-500"
             />
-            <button className="w-full bg-blue-600 text-white p-3 rounded-lg hover:bg-blue-700 transition">
+
+            <button
+              className="w-full bg-red-600 hover:bg-red-700 
+                         text-white p-3 rounded-lg 
+                         transition font-semibold"
+            >
               Send Message
             </button>
           </div>
