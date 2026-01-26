@@ -3,7 +3,7 @@ import { Typewriter } from "react-simple-typewriter";
 
 const Hero = () => {
   return (
-    <section className="min-h-screen flex items-center justify-between px-6 md:px-12 lg:px-30 pt-20">
+    <section id="home" className=" min-h-screen flex items-center justify-between px-6 md:px-12 lg:px-30 pt-20">
       {/* Left Content */}
       <div className="max-w-xl">
         <p className="text-gray-300 text-lg mb-3">Hello, I'm Gaurav 👋</p>
