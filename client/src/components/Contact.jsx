@@ -1,4 +1,5 @@
 import { FaMapMarkerAlt, FaEnvelope, FaPhoneAlt, FaGithub, FaLinkedin } from "react-icons/fa";
+import SocialLinks from "./SocialLinks";
 
 const Contact = () => {
   return (
@@ -20,28 +21,28 @@ const Contact = () => {
             </h3>
 
             <p className="text-gray-400 leading-relaxed max-w-md">
-              Have a project in mind, want to collaborate, or just say hi?  
+              Have a project in mind, want to collaborate, or just say hi?
               I’m always open to discussing new ideas and opportunities.
             </p>
 
             {/* Info Items */}
             <div className="space-y-5">
               <div className="flex items-center gap-4 group">
-                <span className="p-3 rounded-full bg-red-500/10 text-red-500 group-hover:bg-red-500 group-hover:text-white transition">
+                <span className="p-3 rounded-full bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white transition">
                   <FaMapMarkerAlt />
                 </span>
                 <p className="text-gray-300">Kota Rajasthan</p>
               </div>
 
               <div className="flex items-center gap-4 group">
-                <span className="p-3 rounded-full bg-red-500/10 text-red-500 group-hover:bg-red-500 group-hover:text-white transition">
+                <span className="p-3 rounded-full bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white transition">
                   <FaEnvelope />
                 </span>
                 <p className="text-gray-300">paretagaurav2005@gmail.com</p>
               </div>
 
               <div className="flex items-center gap-4 group">
-                <span className="p-3 rounded-full bg-red-500/10 text-red-500 group-hover:bg-red-500 group-hover:text-white transition">
+                <span className="p-3 rounded-full bg-red-500/10 text-red-500 hover:bg-red-500 hover:text-white transition">
                   <FaPhoneAlt />
                 </span>
                 <p className="text-gray-300">+91 9024332403</p>
@@ -49,20 +50,7 @@ const Contact = () => {
             </div>
 
             {/* Social Icons */}
-            <div className="flex gap-6 pt-4">
-              <a
-                href="#"
-                className="text-gray-400 hover:text-red-500 text-2xl transition hover:scale-110"
-              >
-                <FaGithub />
-              </a>
-              <a
-                href="#"
-                className="text-gray-400 hover:text-red-500 text-2xl transition hover:scale-110"
-              >
-                <FaLinkedin />
-              </a>
-            </div>
+            <SocialLinks/>
           </div>
 
           {/* RIGHT SIDE – FORM */}

@@ -5,6 +5,7 @@ import Projects from "./components/Projects";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import FloatingParticles from "./components/FloatingParticles";
 
 function App() {
   const [mouse, setMouse] = useState({ x: 50, y: 50 });
@@ -39,6 +40,10 @@ function App() {
           )`,
         }}
       />
+
+      {/* Floating Particles */}
+      <FloatingParticles />
+
 
       {/* Content */}
       <div className="relative z-10">

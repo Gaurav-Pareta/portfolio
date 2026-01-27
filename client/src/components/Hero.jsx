@@ -1,7 +1,10 @@
 import { Typewriter } from "react-simple-typewriter";
-
+import { useState } from "react";
+import SocialLinks from "./SocialLinks";
 
 const Hero = () => {
+  const [imgStyle, setImgStyle] = useState({});
+
   return (
     <section id="home" className=" min-h-screen flex items-center justify-between px-6 md:px-12 lg:px-30 pt-20">
       {/* Left Content */}
@@ -31,50 +34,68 @@ const Hero = () => {
           Download CV
         </button>
 
-        <div className="flex space-x-6 text-lg">
-          <a
-            href="https://github.com/Gaurav-Pareta"
-            className="hover:text-red-400 text-2xl cursor-pointer transition duration-300"
-          >
-            <i className="fa-brands fa-github"></i>
-          </a>
-          <a
-            href="https://www.linkedin.com/in/gaurav-pareta"
-            className="hover:text-red-400 text-2xl cursor-pointer transition duration-300"
-          >
-            <i className="fa-brands fa-linkedin"></i>
-          </a>
-          <a
-            href="https://www.instagram.com/gauravpareta4"
-            className="hover:text-red-400 text-2xl cursor-pointer transition duration-300"
-          >
-            <i className="fa-brands fa-instagram"></i>
-          </a>
-        </div>
+        <SocialLinks/>
       </div>
 
       {/* Right Image */}
-      <div className="hidden lg:block ml-12">
-        <div className="relative">
-          {/* Main Profile Image */}
-          <div className="w-80 h-80 rounded-full overflow-hidden border-4 border-red-500 shadow-2xl">
-            <img
-              src="/luffy.jpg"
-              alt="Gaurav - Code Explorer"
-              className="w-full h-full object-cover"
-            />
-          </div>
+<div className="hidden lg:block ml-12">
+  <div className="relative flex justify-center">
 
+    {/* Dark Red Glow */}
+    <div className="absolute inset-0 rounded-full 
+      bg-red-900/30 blur-3xl scale-110" />
 
-        </div>
+    {/* Interactive Image */}
+    <div
+      onMouseMove={(e) => {
+        const rect = e.currentTarget.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
 
-        {/* Floating text */}
-        <div className="mt-8 text-center">
-          <p className="text-gray-400 text-sm font-mono">
-            <span className="text-red-400 animate-pulse">█</span> Coding with passion
-          </p>
-        </div>
+        const rotateX = ((y - rect.height / 2) / rect.height) * 12;
+        const rotateY = ((x - rect.width / 2) / rect.width) * -12;
+
+        setImgStyle({
+          transform: `
+            perspective(800px)
+            rotateX(${rotateX}deg)
+            rotateY(${rotateY}deg)
+            scale(1.05)
+          `,
+        });
+      }}
+      onMouseLeave={() =>
+        setImgStyle({
+          transform: `
+            perspective(800px)
+            rotateX(0deg)
+            rotateY(0deg)
+            scale(1)
+          `,
+        })
+      }
+      style={imgStyle}
+      className="relative w-80 h-80 transition-transform duration-200 ease-out"
+    >
+      <div className="w-full h-full rounded-full overflow-hidden 
+        border-4 border-red-500 shadow-2xl">
+        <img
+          src="/luffy.jpg"
+          alt="Gaurav - Code Explorer"
+          className="w-full h-full object-cover"
+        />
       </div>
+    </div>
+  </div>
+
+  {/* Floating Text */}
+  <div className="mt-8 text-center">
+    <p className="text-gray-400 text-sm font-mono">
+      <span className="text-red-400 animate-pulse">█</span> Coding with passion
+    </p>
+  </div>
+</div>
+
 
 
     </section>

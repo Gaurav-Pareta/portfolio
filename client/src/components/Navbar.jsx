@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import SocialLinks from "./SocialLinks";
 
 const sections = ["home",  "about", "projects", "contact"];
 
@@ -70,17 +71,7 @@ const Navbar = () => {
         </div>
 
         {/* Social Icons */}
-        <div className="flex space-x-5 text-lg">
-          <a href="https://github.com/Gaurav-Pareta" target="_blank" rel="noreferrer">
-            <i className="fa-brands fa-github transition hover:text-red-400 hover:scale-125"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/gaurav-pareta" target="_blank" rel="noreferrer">
-            <i className="fa-brands fa-linkedin transition hover:text-red-400 hover:scale-125"></i>
-          </a>
-          <a href="https://www.instagram.com/gauravpareta4" target="_blank" rel="noreferrer">
-            <i className="fa-brands fa-instagram transition hover:text-red-400 hover:scale-125"></i>
-          </a>
-        </div>
+        <SocialLinks/>
 
       </div>
     </nav>
