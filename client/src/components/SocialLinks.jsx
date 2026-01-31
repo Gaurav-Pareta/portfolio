@@ -35,7 +35,7 @@ const SocialLinks = ({ variant = "icon" }) => {
               <span
                 className="
                   absolute -bottom-1 left-1/2
-                  w-0 h-[2px] bg-red-500
+                  w-0 h-0.5 bg-red-500
                   transition-all duration-300 ease-out
                   group-hover:w-full group-hover:left-0
                 "
