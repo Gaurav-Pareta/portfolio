@@ -23,7 +23,7 @@ const Footer = () => {
         <SocialLinks variant="text" />
 
         {/* Tagline */}
-        <p className="mt-6 text-xs text-gray-600 ">
+        <p className="mt-6 text-xs text-gray-600 font-mono">
           Built with focus, patience & code.
         </p>
       </div>
