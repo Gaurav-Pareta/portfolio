@@ -1,118 +1,92 @@
 const express = require("express");
 const router = express.Router();
-const nodemailer = require("nodemailer");
+const { Resend } = require("resend");
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 router.post("/", async (req, res) => {
+
   try {
+
     const { name, email, message } = req.body;
 
-    // Validation
     if (!name || !email || !message) {
+
       return res.status(400).json({
         success: false,
         message: "All fields are required",
       });
     }
 
-    // Create transporter
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-
-      tls: {
-        rejectUnauthorized: false,
-      },
-    });
-
     // Send mail to you
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
+    await resend.emails.send({
 
-      replyTo: email,
+      from: "onboarding@resend.dev",
 
-      to: process.env.EMAIL_USER,
+      to: "paretagaurav2005@gmail.com",
 
-      subject: `New Portfolio Message from ${name}`,
+      subject: `Portfolio Message from ${name}`,
 
       html: `
-        <div style="font-family: Arial; padding:20px;">
+        <h2>New Portfolio Message</h2>
 
-          <h2>New Portfolio Message</h2>
+        <p>
+          <strong>Name:</strong> ${name}
+        </p>
 
-          <p>
-            <strong>Name:</strong> ${name}
-          </p>
+        <p>
+          <strong>Email:</strong> ${email}
+        </p>
 
-          <p>
-            <strong>Email:</strong> ${email}
-          </p>
+        <p>
+          <strong>Message:</strong>
+        </p>
 
-          <p>
-            <strong>Message:</strong>
-          </p>
-
-          <div
-            style="
-              background:#f4f4f4;
-              padding:15px;
-              border-radius:8px;
-              color:black;
-            "
-          >
-            ${message}
-          </div>
-
+        <div>
+          ${message}
         </div>
       `,
     });
 
-    // Auto reply to visitor
-    await transporter.sendMail({
-      from: process.env.EMAIL_USER,
+    // Auto reply
+    await resend.emails.send({
+
+      from: "onboarding@resend.dev",
 
       to: email,
 
-      subject: "Thank You For Contacting Me",
+      subject: "Thanks for contacting me",
 
       html: `
-        <div style="font-family: Arial; padding:20px;">
+        <h2>Thank You!</h2>
 
-          <h2>Thank You!</h2>
+        <p>
+          Hi ${name},
+        </p>
 
-          <p>
-            Hi ${name},
-          </p>
+        <p>
+          I received your message successfully.
+        </p>
 
-          <p>
-            I received your message successfully.
-            I will get back to you soon.
-          </p>
+        <p>
+          I will contact you soon.
+        </p>
 
-          <br/>
+        <br/>
 
-          <p>
-            Regards,
-          </p>
-
-          <h3>
-            Gaurav Pareta
-          </h3>
-
-        </div>
+        <p>
+          Gaurav Pareta
+        </p>
       `,
     });
 
-    // Success response
     return res.status(200).json({
       success: true,
       message: "Message sent successfully",
     });
+
   } catch (error) {
-    console.log("FULL EMAIL ERROR:");
+
     console.log(error);
 
     return res.status(500).json({
