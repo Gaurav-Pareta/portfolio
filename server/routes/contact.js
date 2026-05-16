@@ -3,35 +3,57 @@ const router = express.Router();
 const nodemailer = require("nodemailer");
 
 router.post("/", async (req, res) => {
+
   try {
+
     const { name, email, message } = req.body;
 
-    // validation
+    // Validation
     if (!name || !email || !message) {
+
       return res.status(400).json({
         success: false,
         message: "All fields are required",
       });
     }
 
-    // transporter
+    // Create transporter
     const transporter = nodemailer.createTransport({
-      service: "gmail",
+
+      host: "smtp.gmail.com",
+
+      port: 465,
+
+      secure: true,
+
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
+
+      connectionTimeout: 10000,
     });
 
-    // send email to you
+    // Verify SMTP connection
+    await transporter.verify();
+
+    console.log("SMTP READY");
+
+    // Send mail to you
     await transporter.sendMail({
+
       from: process.env.EMAIL_USER,
+
       replyTo: email,
+
       to: process.env.EMAIL_USER,
+
       subject: `New Portfolio Message from ${name}`,
+
       html: `
         <div style="font-family: Arial; padding:20px;">
-          <h2>New Contact Message</h2>
+
+          <h2>New Portfolio Message</h2>
 
           <p>
             <strong>Name:</strong> ${name}
@@ -45,21 +67,34 @@ router.post("/", async (req, res) => {
             <strong>Message:</strong>
           </p>
 
-          <div style="background:#f4f4f4;padding:15px;border-radius:8px;">
+          <div
+            style="
+              background:#f4f4f4;
+              padding:15px;
+              border-radius:8px;
+              color:black;
+            "
+          >
             ${message}
           </div>
+
         </div>
       `,
     });
 
-    // auto reply to user
+    // Auto reply to visitor
     await transporter.sendMail({
+
       from: process.env.EMAIL_USER,
+
       to: email,
+
       subject: "Thank You For Contacting Me",
+
       html: `
         <div style="font-family: Arial; padding:20px;">
-          <h2>Thanks for reaching out!</h2>
+
+          <h2>Thank You!</h2>
 
           <p>
             Hi ${name},
@@ -67,7 +102,7 @@ router.post("/", async (req, res) => {
 
           <p>
             I received your message successfully.
-            I will contact you soon.
+            I will get back to you soon.
           </p>
 
           <br/>
@@ -76,23 +111,28 @@ router.post("/", async (req, res) => {
             Regards,
           </p>
 
-          <h3>Gaurav Pareta</h3>
+          <h3>
+            Gaurav Pareta
+          </h3>
+
         </div>
       `,
     });
 
-    res.status(200).json({
+    // Success response
+    return res.status(200).json({
       success: true,
       message: "Message sent successfully",
     });
 
   } catch (error) {
 
+    console.log("FULL EMAIL ERROR:");
     console.log(error);
 
-    res.status(500).json({
+    return res.status(500).json({
       success: false,
-      message: "Failed to send message",
+      message: error.message,
     });
   }
 });
