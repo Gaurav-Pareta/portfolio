@@ -25,11 +25,9 @@ function App() {
   return (
     <div className="relative min-h-screen overflow-hidden text-white">
 
-      {/* Mostly Black Gradient */}
       <div className="fixed inset-0 bg-linear-to-br 
         from-black via-[#070707] to-[#120000]" />
 
-      {/* Dark Red Mouse Glow */}
       <div
         className="fixed inset-0 pointer-events-none"
         style={{
