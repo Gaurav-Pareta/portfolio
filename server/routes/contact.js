@@ -3,14 +3,11 @@ const router = express.Router();
 const nodemailer = require("nodemailer");
 
 router.post("/", async (req, res) => {
-
   try {
-
     const { name, email, message } = req.body;
 
     // Validation
     if (!name || !email || !message) {
-
       return res.status(400).json({
         success: false,
         message: "All fields are required",
@@ -19,29 +16,20 @@ router.post("/", async (req, res) => {
 
     // Create transporter
     const transporter = nodemailer.createTransport({
-
-      host: "smtp.gmail.com",
-
-      port: 465,
-
-      secure: true,
+      service: "gmail",
 
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
 
-      connectionTimeout: 10000,
+      tls: {
+        rejectUnauthorized: false,
+      },
     });
-
-    // Verify SMTP connection
-    await transporter.verify();
-
-    console.log("SMTP READY");
 
     // Send mail to you
     await transporter.sendMail({
-
       from: process.env.EMAIL_USER,
 
       replyTo: email,
@@ -84,7 +72,6 @@ router.post("/", async (req, res) => {
 
     // Auto reply to visitor
     await transporter.sendMail({
-
       from: process.env.EMAIL_USER,
 
       to: email,
@@ -124,9 +111,7 @@ router.post("/", async (req, res) => {
       success: true,
       message: "Message sent successfully",
     });
-
   } catch (error) {
-
     console.log("FULL EMAIL ERROR:");
     console.log(error);
 
