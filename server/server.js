@@ -11,7 +11,8 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: "*",
+    origin: "https://portfolio-nine-blush-otv5mvdfzh.vercel.app/",
+    credentials: true
   })
 );
 
