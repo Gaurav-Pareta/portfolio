@@ -35,7 +35,7 @@ const Contact = () => {
       setLoading(true);
 
       const res = await axios.post(
-        "https://portfolio-ktem.onrender.com",
+        "https://portfolio-ktem.onrender.com/api/contact",
         formData
       );
 
