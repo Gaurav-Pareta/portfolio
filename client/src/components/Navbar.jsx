@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import SocialLinks from "./SocialLinks";
 
-const sections = ["home",  "about", "projects", "contact"];
+const sections = ["home", "about", "projects", "contact"];
 
 const Navbar = () => {
   const [active, setActive] = useState("home");
@@ -19,7 +19,7 @@ const Navbar = () => {
           }
         });
       },
-      { threshold: 0.6 }
+      { threshold: 0.6 },
     );
 
     sections.forEach((id) => {
@@ -33,22 +33,25 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-transparent">
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-
         {/* Logo */}
         <h1
-          className="text-xl font-bold cursor-pointer"
           onClick={() => scrollTo("home")}
+          className="text-2xl font-bold cursor-pointer
+  tracking-wide hover:scale-105 transition duration-300"
         >
-          MyPortfolio
+          <span className="text-red-500">{"<"}</span>
+          Gaurav
+          <span className="text-red-500">{"/>"}</span>
         </h1>
 
         {/* Center Nav */}
-        <div className="border border-white/20 rounded-full px-8 py-3 
+        <div
+          className="border border-white/20 rounded-full px-8 py-3 
                         bg-white/5 backdrop-blur-md 
                         shadow-lg transition-all duration-300 
-                        hover:border-red-400 hover:scale-105">
+                        hover:border-red-400 hover:scale-105"
+        >
           <ul className="flex items-center space-x-8 text-sm font-medium">
-
             {sections.map((item) => (
               <li
                 key={item}
@@ -66,13 +69,11 @@ const Navbar = () => {
                 />
               </li>
             ))}
-
           </ul>
         </div>
 
         {/* Social Icons */}
-        <SocialLinks/>
-
+        <SocialLinks />
       </div>
     </nav>
   );

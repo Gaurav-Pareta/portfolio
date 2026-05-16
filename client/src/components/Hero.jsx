@@ -80,9 +80,9 @@ const Hero = () => {
       <div className="w-full h-full rounded-full overflow-hidden 
         border-4 border-red-500 shadow-2xl">
         <img
-          src="/luffy.jpg"
+          src="/myImage.png"
           alt="Gaurav - Code Explorer"
-          className="w-full h-full object-cover"
+          className="w-full h-full object-contain scale-123"
         />
       </div>
     </div>

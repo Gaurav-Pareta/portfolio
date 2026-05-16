@@ -74,7 +74,7 @@ function aboutMe() {
 
         </div>
 
-        <div className="bg-black/70 border border-red-500/30 rounded-2xl w-full p-6 
+        <div className="bg-black/70 border border-red-500/30 rounded-2xl w-180 p-6 
                 shadow-[0_0_30px_rgba(239,68,68,0.15)]">
 
           <div className="text-red-400 text-sm font-mono">
